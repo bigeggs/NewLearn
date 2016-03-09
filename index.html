@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/property.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/my$.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/others$.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/cookies.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/localData.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<input type="text" id="abc" value="shouw" />
+		<input type="button" id="ddd" value="bt" />
+		<script type="text/javascript">
+          var person=function  () {
+          	this.name='te';
+          }
+          person.prototype.sex='ss';
+          var test=new person();
+          document.write(test.__proto__.constructor)
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<script src="../js/iframePostMessage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/my$.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<iframe id='f1' src="f1.html" width="250" height="350"></iframe>
+		<iframe id='f2' src="f2.html" width="250" height="350"></iframe>
+		<input type="text" name="" id="maintext" value="" />
+		<input type="button" value="发送到1" onclick="sendMsg('f1')" />
+		<input type="button" value="发送到2" onclick="sendMsg('f2')" />
+		<span id='showText'></span>
+		<script type="text/javascript">
+			var messenger = new ZXMessenger('main', 'mytest');
+			var f1 = document.getElementById("f1");
+			var f2 = document.getElementById("f2");
+			var input = document.getElementById("maintext");
+			messenger.addcallbackFn(function(meg) {
+				var newnode = document.createTextNode(meg + '\n')
+				var show = document.getElementById("showText");
+				show.appendChild(newnode);
+			});
+			messenger.addWindowTargerts(f1.contentWindow, 'f1');
+			messenger.addWindowTargerts(f2.contentWindow, 'f2');
+			function sendMsg(target) {
+				messenger.windowTargets[target].sendMessage(input.value);
+			}
+		</script>
+	</body>
+
+</html>

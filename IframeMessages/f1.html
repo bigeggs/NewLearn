@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title></title>
+		<script src="../js/iframePostMessage.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<input type="text" id="text1" value="" />
+		<input type="button" value="sendtomain" onclick="" />
+		<span id="showText">
+			
+		</span>
+		<script type="text/javascript">
+			var messenger = new ZXMessenger('f1', 'mytest');
+			var input = document.getElementById("text1");
+			messenger.addcallbackFn(function(meg) {
+				var newnode = document.createTextNode(meg + '\n')
+				var show = document.getElementById("showText");
+				show.appendChild(newnode);
+			});
+			messenger.addWindowTargerts(window.parent, 'main');
+			messenger.addWindowTargerts(window.parent.frames[1], 'f2');
+
+			function sendMsg(target) {
+				messenger.windowTargets[target].sendMessage(input.value);
+			}
+		</script>
+	</body>
+
+</html>
